@@ -158,7 +158,7 @@ def pagina_importancia_valor():
         rc_max = calcular_rc_max(tamanho_matriz)
 
         st.write("___")
-        st.title("Avaliação de Consistência")
+        st.title("Avaliação de Consistência", help="O Índice de Consistência é obtido por meio da Razão de Consistência de Saaty (1980).")
         avaliacao_consistencia = {
             "Avaliação Consistência": ["MH(s)", "N", "ICH", "HRI", "RC", "RCMáx"],
             "Valor": [mh_s, num_critérios, ich, hri, rc, rc_max],
