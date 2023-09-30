@@ -66,8 +66,8 @@ def calcular_rc_max(tamanho_matriz):
     return tabela_rc_max.get(tamanho_matriz, 0.10)
 
 def pagina_numero_critérios():
-    st.title("Passo 1: Número de Critérios")
-    num_critérios = st.number_input("Quantos critérios você vai avaliar?", min_value=2, max_value=7, step=1)
+    st.title("Para quantos critérios você quer atribuir pesos?")
+    num_critérios = st.number_input("Você deve utilizar entre 3 e 7 critérios", min_value=3, max_value=7, step=1)
 
     if st.button("Ok"):
         if 3 <= num_critérios <= 7:
@@ -77,7 +77,7 @@ def pagina_numero_critérios():
             st.warning("A quantidade de critérios deve variar apenas entre 3 e 7.")
 
 def pagina_importancia_valor():
-    st.title("Passo 2: Importância e Valor")
+    st.title("Aqui você deverá definir a relação de importância entre os critérios.")
 
     if "num_critérios" not in st.session_state:
         st.warning("Por favor, insira o número de critérios na página anterior.")
@@ -88,7 +88,7 @@ def pagina_importancia_valor():
 
     for i in range(1, num_critérios + 1):
         for j in range(i + 1, num_critérios + 1):
-            importancia = st.selectbox(f" C{i} é mais importante, menos importante, ou igual C{j} ?", ["+", "-", "="])
+            importancia = st.selectbox(f" C{i} é mais importante, menos importante, ou tem a mesma importância que C{j} ?", ["+", "-", "="])
             valor = st.number_input(f"De 0 (zero) a 9 (nove), quão importante é esse critério? C{i} C{j}", min_value=1, max_value=9, step=1)
             data["Critérios/Alternativas"].append(f"{i} {j}")
             data["Importância/Valor"].append((importancia, valor))
